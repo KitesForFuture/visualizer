@@ -17,4 +17,4 @@ class Visualizer:
         self.plot.update([flydata.x_rotation, flydata.y_rotation, flydata.z_rotation])
 
 
-Visualizer("/dev/tty.usbserial-0001", 115200, b"FLYDATA\0", 40)
+Visualizer("/dev/tty.usbserial-0001", 115200, b"FLYDATA", 40)

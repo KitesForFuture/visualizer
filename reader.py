@@ -31,7 +31,6 @@ class Reader:
                 tag_start_index = self.ringbuffer_size - (buffer_len + len(tag))
                 if ringbuffer_string[tag_start_index:(tag_start_index + len(tag))] == tag:
                     bytes_for_listener = bytes(ringbuffer_string[tag_start_index+len(tag):])
-                    print(ringbuffer_string)
                     listener(bytes_for_listener)
 
     def register_tag_listener(self, tag, buffer_len, listener):
