@@ -14,7 +14,7 @@ class Visualizer:
 
     def process_flydata (self, bytes):
         flydata = Flydata(bytes)
-        self.plot.update([flydata.x_rotation, flydata.y_rotation, flydata.z_rotation])
+        self.plot.update(flydata)
 
 
 Visualizer("/dev/tty.usbserial-0001", 115200, b"FLYDATA", 40)
