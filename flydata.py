@@ -4,7 +4,7 @@ class Flydata():
 
     def __init__(self, bytes):
         data = struct.unpack('ffffffffff', bytes)
-        print(data)
+        print (data)
         self.x_rotation = (data[0], data[3], data[6])
         self.y_rotation = (data[1], data[4], data[7])
         self.z_rotation = (data[2], data[5], data[8])
