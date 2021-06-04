@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import mpl_toolkits.mplot3d.axes3d as p3
 import collections
 
-HEIGHT_GRAPH_HISTORY = 100
+HEIGHT_GRAPH_HISTORY = 1000
 
 class Plot:
 
@@ -37,7 +37,7 @@ class Plot:
     def _init_height_graph(self, ax):
         self.height_history = collections.deque([0.0 for i in range(0, HEIGHT_GRAPH_HISTORY)], maxlen=HEIGHT_GRAPH_HISTORY)
         self.height_line = plt.plot(range(0, HEIGHT_GRAPH_HISTORY), self.height_history)[0]
-        ax.set_ylim([-10,10])
+        ax.set_ylim([-2,2])
 
     def update(self, flydata):
         self._update_rotation([flydata.x_rotation, flydata.y_rotation, flydata.z_rotation])

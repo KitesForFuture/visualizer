@@ -9,7 +9,7 @@ class Reader:
         longest combination of (expected buffer + tag length)
     '''
     def __init__(self, port, baudrate, ringbuffer_size):
-        self.serialPort = serial.Serial(port=port, baudrate=baudrate, bytesize=8, stopbits=serial.STOPBITS_ONE)
+        self.serialPort = serial.Serial(port=port, baudrate=baudrate, bytesize=8, stopbits=serial.STOPBITS_ONE, timeout=None, rtscts=False, dsrdtr=False)
         self.listeners = []
         self.ringbuffer = collections.deque([b'\7' for i in range(ringbuffer_size)], maxlen=ringbuffer_size)
         self.ringbuffer_size = ringbuffer_size
@@ -32,6 +32,7 @@ class Reader:
                 if ringbuffer_string[tag_start_index:(tag_start_index + len(tag))] == tag:
                     bytes_for_listener = bytes(ringbuffer_string[tag_start_index+len(tag):])
                     listener(bytes_for_listener)
+
 
     def register_tag_listener(self, tag, buffer_len, listener):
         self.listeners.append((tag, buffer_len, listener))
