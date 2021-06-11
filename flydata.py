@@ -3,11 +3,22 @@ import struct
 class Flydata():
 
     def __init__(self, bytes):
-        data = struct.unpack('ffffffffff', bytes)
-        self.x_rotation = (data[0], data[3], data[6])
-        self.y_rotation = (data[1], data[4], data[7])
-        self.z_rotation = (data[2], data[5], data[8])
-        self.height = data[9]
+        # Cycle-Time (1), Height (1), Gyro-Vector (3), Accel-Vector (3), Rotation-Matrix (9), G-Correction-Axis (3), G-Correction-Angle (1), Position-Matrix (9)
+        data = struct.unpack('ffffffffffffffffffffffffffffff', bytes)
+        self.cycle_seconds = data[0]
+        self.height = data[1]
+        self.x_rotation = (data[21], data[24], data[27])
+        self.y_rotation = (data[22], data[25], data[28])
+        self.z_rotation = (data[23], data[26], data[29])
+
+
+    @property
+    def cycle_seconds(self):
+        return self.__cycle_seconds
+
+    @cycle_seconds.setter
+    def cycle_seconds(self, cycle_seconds):
+        self.__cycle_seconds = cycle_seconds
 
     @property
     def x_rotation(self):

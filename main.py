@@ -17,4 +17,4 @@ class Visualizer:
         self.plot.update(flydata)
 
 
-Visualizer("/dev/tty.usbserial-0001", 115200, b"FLYDATA", 40)
+Visualizer("/dev/tty.usbserial-0001", 115200, b"FLYDATA", 120)
